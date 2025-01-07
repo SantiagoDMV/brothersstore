@@ -29,7 +29,7 @@ DEBUG = 'RENDER' not in os.environ
 
 #ALLOWED_HOSTS = ['https://brothersstore-sistema.onrender.com/', 'brothersstore-sistema.onrender.com/']
 #ALLOWED_HOSTS = ['127.0.0.1', 'localhost','https://brothersstore-sistema.onrender.com/', 'brothersstore-sistema.onrender.com/', '']
-ALLOWED_HOSTS = ['brothersstore.ecuabrothers.com', '127.0.0.1']
+ALLOWED_HOSTS = ['brothersstore-sistema.onrender.com', 'localhost', '127.0.0.1']
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME:
