@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Inventario</h1>
+
+<form class="d-flex" role="search">
+  {% csrf_token %}
+  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+  <button class="btn btn-outline-success" type="submit">Search</button>
+</form>
+
+<table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Categoría</th>
+        <th scope="col">Cantidad</th>
+        <th scope="col">Precio</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% if productos %}
+        {% for producto in productos %}        
+        <tr 
+            {% if producto.cantidad >= 3 %} class="table-success"
+            {% elif producto.cantidad == 2 %} class="table-warning"
+            {% elif producto.cantidad == 1 %} class="table-danger"
+            {% elif producto.cantidad == 0 %} class="table-dark"
+            {% endif %}
+        >
+        <th scope="row">{{producto.id}}</th>
+        <td>
+            <a href="{% url 'mostrar_producto' producto.id%}">
+            {{producto.nombre}}
+            </a>
+        </td>
+        <td>{{producto.categoria}}</td>
+        <td>{{producto.cantidad}}</td>
+        <td>{{producto.precio}}</td>
+      </tr>
+
+      {% endfor %}
+      {% endif %}
+      <!--<tr>
+        <th scope="row">3</th>
+        <td colspan="2">Larry the Bird</td>
+        <td>@twitter</td>
+      </tr>-->
+    </tbody>
+  </table>
+
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'base.html '%}
+{% block content %}
+<h1>Crear un producto</h1>
+<form method="POST">
+    {{error}}
+    {% csrf_token %}
+    {{ form }}
+    <button>Crear</button>
+</form>
+
+{% endblock %}

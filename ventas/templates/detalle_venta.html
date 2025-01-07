@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h1>Detalle Venta {{venta_id}}</h1>
+<form action="{% url 'eliminar_venta' venta_id %}">
+    {% csrf_token %}
+    <button>Eliminar Venta</button>
+</form>
+
+<form action="{% url 'detalle_venta' venta_id %}" method="POST">
+    {% csrf_token %}
+<div class="container">
+    <div class="row align-items-start">
+        <div class="col-md-8">
+            
+        
+                <button id="btn-agregar" class="btn btn-primary mb-3">
+                    Agregar producto
+                </button>
+
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">Producto</th>
+                            <th scope="col">Cantidad</th>
+                            <th scope="col">Precio unitario</th>
+                            <th scope="col">Subtotal</th>
+                            <th scope="col">Quitar</th>
+                        </tr>
+                    </thead>
+                    <tbody id="div_productos">
+
+                        {% for form_detalle_venta in form_detalle_ventas %}
+                        <tr id="div1" class="div_producto">
+                            <input type="hidden" name="mostrados" value="{{form_detalle_venta.id}}">
+                            <td name="producto" class="form-control producto" onchange="habilitarCampos(this)">
+                                <!-- Usar el campo de formulario {{form_detalle_venta.producto}} -->
+                                    {{form_detalle_venta.producto}}
+                            </td>
+                            <td><input type="number" name="cantidad" class="form-control cantidad" oninput="calcularSubtotal(this)" value="{{form_detalle_venta.cantidad}}"></td>
+                            <td><input type="number" name="precio_unitario" class="form-control precio_unitario" oninput="calcularSubtotal(this)" value="{{form_detalle_venta.precio_unitario}}"></td>
+                            <td><input type="number" name="subtotal" class="form-control subtotal" value="{{form_detalle_venta.subtotal}}" readonly></td>
+                            <td><button type="button" class="btn btn-danger btn-eliminar">X</button></td>
+                        </tr>
+                        {% endfor %}
+
+                        <tr id="tr1" class="div_producto" >
+                            <td name="producto" class="form-control producto" onchange="habilitarCampos(this)">
+                                <!-- Usar el campo de formulario {{form_detalle_venta.producto}} -->
+                                    {{form_detalle_venta.producto}}
+                            </td>
+                            <td><input type="number" name="cantidad" class="form-control cantidad" oninput="calcularSubtotal(this)" value="1"></td>
+                            <td><input type="number" name="precio_unitario" class="form-control precio_unitario" oninput="calcularSubtotal(this)" value="0"></td>
+                            <td><input type="number" name="subtotal" class="form-control subtotal" value="0" readonly></td>
+                            <td><button type="button" class="btn btn-danger btn-eliminar">X</button></td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+
+        </div>
+
+        <div class="col-md-4 position-sticky top-0">
+            <div class="card" style="width: 100%;">
+                <div class="card-header">
+                    Detalles de la Venta
+                </div>
+                <div class="form-group">
+                    <label for="metodo_pago">Método de pago</label>
+                    <select name="metodo_pago" id="metodo_pago" class="form-control" onchange="cambiarImpuesto()">
+                        <option value="{{form_venta.metodo_pago.value}}">{{form_venta.metodo_pago.value}}</option>
+                        <option value="efectivo">Efectivo</option>
+                        <option value="tarjeta">Tarjeta de Crédito/Débito</option>
+                        <option value="transferencia">Transferencia Bancaria</option>
+                        <option value="otros">Otros</option>
+                    </select>
+                </div>
+
+                        
+                    
+
+                <div class="form-group">
+                    <label for="descuento">Descuento</label>
+                    <input name="descuento" type="number" id="descuento" class="form-control" value="{{form_venta.descuento.value}}" oninput="calcularTotal()">
+                </div>
+
+                <div class="form-group">
+                    <label for="impuesto">Impuesto (%)</label>
+                    <input name="impuesto" type="number" id="impuesto" class="form-control" value="{{form_venta.impuesto.value}}" oninput="calcularTotal()">
+                </div>
+
+                <div class="form-group">
+                    <label for="estado">Estado</label>
+                    {{form_venta.estado}}
+                </div>
+
+                <div class="form-group">
+                    <label for="total">Total</label>
+                    <input name="total" type="number" id="total" class="form-control" value="{{form_venta.total.value}}" readonly>
+                </div>
+                
+                <button type="submit" class="btn btn-success mt-3">Actualizar Venta</button>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+<script src="{% static 'js/dv_actualizar.js' %}"></script>
+
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<ul class="list-group list-group-flush">
+    {% if salarios %}
+    {% for salario in salarios%}
+    <a href="{% url 'pago-salario' salario.id %}">
+      <li class="list-group-item">{{salario.usuario}} : ${{ salario.monto }} - {{ salario.estado }}</li>
+    </a>
+      {% endfor %}
+      {% endif %}
+  </ul>
+{% endblock %}

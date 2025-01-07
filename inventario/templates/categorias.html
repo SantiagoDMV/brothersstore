@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Categorias</h1>
+
+<form class="d-flex" role="search">
+  {% csrf_token %}
+  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+  <button class="btn btn-outline-success" type="submit">Search</button>
+</form>
+
+<table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Descripción</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% if categorias %}
+        {% for categoria in categorias %}        
+        <tr>
+        <th scope="row">{{categoria.id}}</th>
+        <td>
+            <a href="{% url 'mostrar_categoria' categoria.id%}">
+            {{categoria.nombre}}
+            </a>
+        </td>
+        <td>{{categoria.descripcion}}</td>
+      </tr>
+
+      {% endfor %}
+      {% endif %}
+      <!--<tr>
+        <th scope="row">3</th>
+        <td colspan="2">Larry the Bird</td>
+        <td>@twitter</td>
+      </tr>-->
+    </tbody>
+  </table>
+
+{% endblock %}

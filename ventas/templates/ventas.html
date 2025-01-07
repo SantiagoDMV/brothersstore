@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Ventas</h1>
+
+<a href="{% url 'crear_venta' %}">Crear Venta</a>
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Estado</th>
+        <th scope="col">Vendedor</th>
+        <th scope="col">Total</th>
+        <th scope="col">Método de pago</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% if ventas %}
+        {% for venta in ventas %}
+      <tr>
+        <th scope="row">
+            <a href="{% url 'detalle_venta' venta.id %}">
+            {{venta.id}}
+            </a>
+        </th>
+        <td>{{venta.estado}}</td>
+        <td>{{venta.usuario_vendedor}}</td>
+        <td>{{venta.total}}</td>
+        <td>{{venta.metodo_pago}}</td>
+      </tr>
+      {% endfor %}
+      {% endif %}
+    </tbody>
+  </table>
+
+
+
+
+
+
+{% endblock%}

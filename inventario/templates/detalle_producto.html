@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Detalle del producto</h1>
+<form action="{% url 'mostrar_producto' producto.id %}" method="POST">
+
+    {{error}}
+    {% csrf_token %}
+    {{form}}
+    {% if producto.imagen_url %}<img src="{{ producto.imagen_url }}" alt="Imagen del producto"> {% endif %}
+<button>
+    Actualizar
+</button>
+</form>
+<form action="{% url 'eliminar_producto' producto.id%}" method="POST">
+    {% csrf_token %}
+    <button>
+        Eliminar
+    </button>
+</form>
+{% endblock %}

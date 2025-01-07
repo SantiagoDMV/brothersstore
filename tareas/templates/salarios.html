@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Salarios</h1>
+{{total}}
+<form action="{% url 'pago-salario' salario.id %}" method="POST">
+    {{salario.monto}}
+    {% csrf_token %}
+    <p>
+        usuario: <input name="usuario" type="text" value="{{salario.usuario.username}}" readonly>
+    </p>
+    <p>
+        monto: <input name="monto" min="1" max="{{salario.monto}}" type="number" value="{{salario.monto}}" step="0.01">
+    </p>
+
+<button>Pagar</button>
+</form>
+{% endblock %}

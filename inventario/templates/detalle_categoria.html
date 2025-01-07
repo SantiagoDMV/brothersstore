@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Detalle del producto</h1>
+<form action="{% url 'mostrar_categoria' categoria.id %}" method="POST">
+
+    {{error}}
+    {% csrf_token %}
+    {{form}}
+<button>
+    Actualizar
+</button>
+</form>
+<form action="{% url 'eliminar_categoria' categoria.id %}" method="POST">
+    {% csrf_token %}
+    <button>Eliminar</button>
+</form>
+{% endblock %}

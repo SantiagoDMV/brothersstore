@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Actualizar pago (salario)</h1>
+<form action="{% url 'actualizar-pago-salario' instancia.id %}" method="POST">
+    {% csrf_token %}
+{{form}}
+<button>Actualizar</button>
+</form>
+<form action="{% url 'eliminar-pago-salario' instancia.id %}" method="POST">
+    {% csrf_token %}
+    <button>Eliminar</button>
+  </form>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content%}
+<form action="{% url 'crear_categoria' %}" method="POST">
+    {% csrf_token %}
+    {{form}}
+    <button>
+        Crear
+    </button>
+</form>
+{% endblock %}

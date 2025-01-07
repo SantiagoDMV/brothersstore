@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container text-center mt-5">
+    <div class="row align-items-start">
+      <div class="col">
+        <h1>Salarios</h1>
+        <a href="{% url 'vista-salarios' %}">nuevo_pago_salario</a>
+        {% if gastos %}
+        {% for gasto in gastos %}
+        <p>
+        <a href="{% url 'actualizar-pago-salario' gasto.id %}">
+        {{gasto}}
+      </a>
+    </p>
+        {% endfor %}
+        {% endif %}
+      </div>
+      <!--<div class="col">
+        One of three columns
+      </div>-->
+      <div class="col">
+        <h1>Mercaderia</h1>
+      </div>
+      <div class="col">
+        <h1>Otros Gastos</h1>
+      </div>
+    </div>
+  </div>
+
+
+{% endblock %}

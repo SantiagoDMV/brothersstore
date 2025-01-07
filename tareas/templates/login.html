@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Login</h1>
+<form action="{% url 'login' %}" method="POST">
+    {{error}}
+    {% csrf_token %}
+{{form}}
+<button>Ingresar</button>
+</form>
+{% endblock %}
