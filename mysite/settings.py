@@ -28,7 +28,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY',default='sadsadsadsa2342nkj')
 DEBUG = 'RENDER' not in os.environ
 
 #ALLOWED_HOSTS = ['https://brothersstore-sistema.onrender.com/', 'brothersstore-sistema.onrender.com/']
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+#ALLOWED_HOSTS = ['127.0.0.1', 'localhost','https://brothersstore-sistema.onrender.com/', 'brothersstore-sistema.onrender.com/', '']
+ALLOWED_HOSTS = ['brothersstore.ecuabrothers.com', '127.0.0.1']
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME:
@@ -139,7 +140,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/statics/'
 LOGIN_URL='/login'
 STATICFILES_DIRS = [BASE_DIR / "statics"]
 
