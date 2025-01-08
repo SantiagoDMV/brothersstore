@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY',default='sadsadsadsa2342nkj')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = 'RENDER' not in os.environ
+DEBUG = True
 
 #ALLOWED_HOSTS = ['https://brothersstore-sistema.onrender.com/', 'brothersstore-sistema.onrender.com/']
 #ALLOWED_HOSTS = ['127.0.0.1', 'localhost','https://brothersstore-sistema.onrender.com/', 'brothersstore-sistema.onrender.com/', '']

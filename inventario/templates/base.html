@@ -20,9 +20,6 @@
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="/">Home</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/ventas/">Ventas</a>
-              </li>
 
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="/inventario/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -35,12 +32,33 @@
                   <li><a class="dropdown-item" href="{% url 'crear_categoria' %}">Crear Categoría</a></li>
                 </ul>
               </li>
+
+
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="/inventario/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Ingresos
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="{% url 'ventas' %}">Ventas</a></li>
+                  <li><a class="dropdown-item" href="{% url 'crear_venta' %}">Ingresar venta</a></li>
+                </ul>
+              </li>
+
+
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="/gastos/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Gastos
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="{% url 'vista-salarios' %}">Salarios</a></li>
+                  <li><a class="dropdown-item" href="{% url 'categorias' %}">Mercaderia</a></li>
+                  <li><a class="dropdown-item" href="{% url 'categorias' %}">Otros gastos</a></li>
+                </ul>
+              </li>
+
                 {% if user.is_authenticated %}
             
             {% if grupo == 'adminitracion' %}
-            <li class="nav-item"></li>
-                <a class="nav-link" href="/gastos/">Gastos</a>
-              </li>
                 <li class="nav-item"></li>
                 <a class="nav-link" href="/admin/">Administración</a>
               </li>
